@@ -1,0 +1,17 @@
+/**
+ * Project yoolearn-backend
+ * File fileusage.enum
+ * Path src/enum
+ * Created by BRICE ZELE
+ * Date: 11/09/2021
+ */
+export enum FileUsage {
+    PROFILE_IMAGE = 'PROFILE_IMAGE',
+    SKILL_IMAGE = 'SKILL_IMAGE',
+    WORKSHOP_IMAGE = 'WORKSHOP_IMAGE',
+    TRAINING_VIDEO_POSTER_IMAGE = 'TRAINING_VIDEO_POSTER_IMAGE',
+    TRAINING_VIDEO = 'TRAINING_VIDEO',
+    TRAINING_IMAGE = 'TRAINING_IMAGE',
+    SKILL_CATEGORY_IMAGE = 'SKILL_CATEGORY_IMAGE',
+    OTHER = 'OTHER',
+}

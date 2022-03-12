@@ -1,0 +1,10 @@
+{
+  "HELLO": "Bonjour tout le monde",
+  "CREATE_ACCOUNT": "Création de compte",
+  "EMAIL_CONFIRM": "Confirmation de vos contacts",
+  "WELCOME_ON_YOOLEARN": "Bienvenue sur yoolearn",
+  "NEW_COMMENT": "Nouveau commentaire",
+  "NEW_WORKSHOP_PARTICIPATION": "Une nouvelle personne vient de s'inscrire à votre atelier",
+  "NEW_WORKSHOP_TRAINING": "Une nouvelle personne vient de s'inscrire à votre formation",
+  "ACCOUNT_ELIGIBILITY_ACCEPTED": "Votre compte Yoolearn 24 a été validé avec succès"
+}
