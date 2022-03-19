@@ -11,7 +11,7 @@ import {UsersModule} from '../users/users.module';
     imports: [
         ConfigModule.forRoot(),
         JwtModule.register({
-            secret: 'yool@rn',
+            secret: 'FastGeneralTrading@2022',
             signOptions: {
                 expiresIn: '7d',
             },

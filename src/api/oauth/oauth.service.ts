@@ -1,13 +1,18 @@
-import {forwardRef, Inject, Injectable, UnauthorizedException} from '@nestjs/common';
+import {
+    forwardRef,
+    Inject,
+    Injectable,
+    UnauthorizedException,
+} from '@nestjs/common';
 import {JwtService} from '@nestjs/jwt';
 import {JwtPayload} from '../../interfaces/jwt.payload';
-import {User} from '../users/entities/users.entity';
-import {Role} from '../../enum/role.enum';
 import {LoginDto} from '../users/dto/login.dto';
 import {I18nService} from 'nestjs-i18n';
 import {UsersService} from '../users/users.service';
 import jwt_decode from 'jwt-decode';
 import * as bcrypt from 'bcrypt';
+import {User} from '../users/entities/user.entity';
+import {Role} from '../../enum/role.enum';
 
 @Injectable()
 export class OauthService {
@@ -16,8 +21,7 @@ export class OauthService {
         @Inject(forwardRef(() => UsersService))
         private readonly usersService: UsersService,
         private readonly i18n: I18nService,
-    ) {
-    }
+    ) {}
 
     public async getJwtBasicToken(headers) {
         const user = await this.validateUserByBasicJwt(headers);
@@ -81,7 +85,7 @@ export class OauthService {
             header.authorization &&
             header.authorization.includes('Bearer')
         ) {
-            let decoded = jwt_decode(header.authorization.split(' ')[1]);
+            const decoded = jwt_decode(header.authorization.split(' ')[1]);
             return {
                 email: decoded['email'],
                 password: process.env.JWT_SECRET_KEY,

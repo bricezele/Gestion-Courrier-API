@@ -1,0 +1,491 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "AppController_getHello",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/oauth/token": {
+      "post": {
+        "operationId": "getBasicJwtToken",
+        "summary": "Get Basic Jwt Token",
+        "description": "Get Basic Jwt Token depends on default credentials",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "OAuth Endpoint"
+        ],
+        "security": [
+          {
+            "basic": []
+          }
+        ]
+      }
+    },
+    "/oauth/signin": {
+      "post": {
+        "operationId": "signIn",
+        "summary": "Sign In",
+        "description": "Get Basic Jwt Token depends on default credentials",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "OAuth Endpoint"
+        ]
+      }
+    },
+    "/users": {
+      "post": {
+        "operationId": "createUser",
+        "summary": "Creation d'un utilisateur",
+        "description": "Création d'un nouveau utilisateur",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Succes création utilisateur",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "UsersController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users/check-admin-exist": {
+      "get": {
+        "operationId": "UsersController_checkIfUserAdminExist",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/users/{id}": {
+      "get": {
+        "operationId": "UsersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "UsersController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "UsersController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/courriers": {
+      "post": {
+        "operationId": "CourriersController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateCourrierDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": ""
+          }
+        }
+      },
+      "get": {
+        "operationId": "CourriersController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/courriers/{id}": {
+      "get": {
+        "operationId": "CourriersController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "patch": {
+        "operationId": "CourriersController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateCourrierDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      },
+      "delete": {
+        "operationId": "CourriersController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "GESTION COURRIER REST API Gateway",
+    "description": "Gestion Courrier REST API documentation",
+    "version": "v1",
+    "contact": {
+      "name": "Gestion Courrier",
+      "url": "https://fastgeneraltrading.com",
+      "email": "contact@fastgeneraltrading.com"
+    }
+  },
+  "tags": [
+    {
+      "name": "API",
+      "description": ""
+    }
+  ],
+  "servers": [
+    {
+      "url": "api/v1"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "basic": {
+        "type": "http",
+        "scheme": "basic"
+      },
+      "bearer": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "LoginDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "Email de connexion",
+            "default": "bricezele1@gmail.com",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "description": "Mot de passe de connexion",
+            "default": "1998@Arachides1998",
+            "nullable": true
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ]
+      },
+      "CreateUserDto": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "description": "Nom de l'utilisateur",
+            "nullable": false,
+            "default": "Anastase"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Prénom de l'utilisateur",
+            "default": "Brun"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email de l'utilisateur",
+            "nullable": false,
+            "default": "Thophraste_Dubois@yahoo.fr"
+          },
+          "picture": {
+            "type": "number",
+            "description": "Avatar de l'utilisateur"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Numéro de téléphone",
+            "nullable": false,
+            "default": "0512081766"
+          },
+          "password": {
+            "type": "string",
+            "description": "Mot de passe de connexion",
+            "nullable": false,
+            "default": "QT4MvSnkmTRtoJo"
+          },
+          "roles": {
+            "type": "string",
+            "description": "OS de l'utilisateur",
+            "nullable": true,
+            "default": "editor"
+          }
+        },
+        "required": [
+          "firstname",
+          "lastname",
+          "email",
+          "picture",
+          "phone_number",
+          "password",
+          "roles"
+        ]
+      },
+      "UpdateUserDto": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "description": "Nom de l'utilisateur",
+            "nullable": false,
+            "default": "Anastase"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Prénom de l'utilisateur",
+            "default": "Brun"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email de l'utilisateur",
+            "nullable": false,
+            "default": "Thophraste_Dubois@yahoo.fr"
+          },
+          "picture": {
+            "type": "number",
+            "description": "Avatar de l'utilisateur"
+          },
+          "phone_number": {
+            "type": "string",
+            "description": "Numéro de téléphone",
+            "nullable": false,
+            "default": "0512081766"
+          },
+          "password": {
+            "type": "string",
+            "description": "Mot de passe de connexion",
+            "nullable": false,
+            "default": "QT4MvSnkmTRtoJo"
+          },
+          "roles": {
+            "type": "string",
+            "description": "OS de l'utilisateur",
+            "nullable": true,
+            "default": "editor"
+          }
+        }
+      },
+      "CreateCourrierDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "UpdateCourrierDto": {
+        "type": "object",
+        "properties": {}
+      }
+    }
+  }
+}

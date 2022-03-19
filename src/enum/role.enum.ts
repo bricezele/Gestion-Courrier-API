@@ -7,6 +7,7 @@
  */
 export enum Role {
     ADMIN = 'admin',
-    HELPER = 'helper',
-    LEARNER = 'leaner',
+    STANDARD = 'standard',
+    ASSISTANTE_DG = 'assistante_dg',
+    EDITOR = 'editor',
 }

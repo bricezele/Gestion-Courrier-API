@@ -14,15 +14,10 @@ import {
 } from '@nestjs/common';
 import {I18nService} from 'nestjs-i18n';
 import {Response} from 'express';
-import {InjectSentry, SentryService} from '@ntegral/nestjs-sentry';
-import {Severity} from '@sentry/node';
 
 @Catch(HttpException)
 export class HttpExceptionFilter implements ExceptionFilter {
-    constructor(
-        private readonly i18n: I18nService,
-        @InjectSentry() private readonly client: SentryService,
-    ) {}
+    constructor(private readonly i18n: I18nService) {}
 
     async catch(exception: HttpException, host: ArgumentsHost) {
         const ctx = host.switchToHttp();
@@ -31,6 +26,8 @@ export class HttpExceptionFilter implements ExceptionFilter {
         const statusCode = exception.getStatus();
         let message: string | Record<string, any> = null;
         const errorResponse = exception.getResponse();
+
+        console.log('ctx.getRequest', ctx.getRequest());
 
         switch (statusCode) {
             case HttpStatus.UNAUTHORIZED:
@@ -59,12 +56,12 @@ export class HttpExceptionFilter implements ExceptionFilter {
         if (typeof message !== 'string') message = message['message'];
 
         const user = request.user;
-        this.client.instance().setTag('url', request.url);
+        /*        this.client.instance().setTag('url', request.url);
         this.client.instance().setTag('body', JSON.stringify(request.body));
         this.client.instance().setTag('params', JSON.stringify(request.params));
         this.client.instance().setUser(user);
         this.client.instance().captureMessage('' + message, Severity.Log);
-        this.client.instance().captureException(exception);
+        this.client.instance().captureException(exception);*/
 
         response.status(statusCode).json({
             error: exception.name,
