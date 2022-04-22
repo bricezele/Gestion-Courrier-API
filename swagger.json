@@ -860,18 +860,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Eubert"
+            "default": "Libère"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Noel"
+            "default": "Huet"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Raphal.Bernard@gmail.com"
+            "default": "Rjeanne30@hotmail.fr"
           },
           "picture": {
             "type": "number",
@@ -881,7 +881,7 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "0555574588"
+            "default": "+33 699844499"
           },
           "department": {
             "type": "object",
@@ -892,7 +892,7 @@
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "7287vXFxfPnEClI"
+            "default": "BIUFMRZ4bhAgmIt"
           },
           "roles": {
             "type": "string",
@@ -918,18 +918,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Eubert"
+            "default": "Libère"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Noel"
+            "default": "Huet"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Raphal.Bernard@gmail.com"
+            "default": "Rjeanne30@hotmail.fr"
           },
           "picture": {
             "type": "number",
@@ -939,7 +939,7 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "0555574588"
+            "default": "+33 699844499"
           },
           "department": {
             "type": "object",
@@ -950,7 +950,7 @@
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "7287vXFxfPnEClI"
+            "default": "BIUFMRZ4bhAgmIt"
           },
           "roles": {
             "type": "string",

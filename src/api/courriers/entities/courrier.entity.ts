@@ -19,10 +19,12 @@ export class HistoryModification {
             CourrierStatus.EN_ATTENTE_VALIDATION_1,
             CourrierStatus.EN_ATTENTE_VALIDATION_2,
             CourrierStatus.EN_ATTENTE_COTATION_APPROBATION_DGA,
-            CourrierStatus.VALIDE_APPROUVE
+            CourrierStatus.VALIDE_APPROUVE,
+            CourrierStatus.COTATION_APPROUVE,
+            CourrierStatus.COTATION_REFUSE,
         ],
         default: CourrierStatus.PENDING,
-        required: true
+        required: true,
     })
     status: string;
 

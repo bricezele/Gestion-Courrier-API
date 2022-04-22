@@ -76,7 +76,13 @@ courrier = await this.courrierModel
                         model: 'User',
                     },
                 })
-                .populate('cotation')
+                .populate({
+                    path: 'cotation',
+                    populate: {
+                        path: 'user',
+                        model: 'User',
+                    },
+                })
                 .populate('documents_annexe')
                 .sort({createdAt: 'desc'})
                 .exec();
