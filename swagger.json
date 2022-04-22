@@ -231,7 +231,9 @@
     },
     "/courriers": {
       "post": {
-        "operationId": "CourriersController_create",
+        "operationId": "createCourrier",
+        "summary": "Creation d'un courrier",
+        "description": "Création d'un nouveau courrier",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -245,9 +247,30 @@
         },
         "responses": {
           "201": {
-            "description": ""
+            "description": "Succes création courrier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateCourrierDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
           }
-        }
+        },
+        "tags": [
+          "Courrier Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "get": {
         "operationId": "CourriersController_findAll",
@@ -256,7 +279,15 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Courrier Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     },
     "/courriers/{id}": {
@@ -276,9 +307,17 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Courrier Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
-      "patch": {
+      "put": {
         "operationId": "CourriersController_update",
         "parameters": [
           {
@@ -304,7 +343,15 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Courrier Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       },
       "delete": {
         "operationId": "CourriersController_remove",
@@ -322,7 +369,432 @@
           "200": {
             "description": ""
           }
-        }
+        },
+        "tags": [
+          "Courrier Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/single-file": {
+      "post": {
+        "operationId": "uploadFile",
+        "summary": "Upload d'un fichier",
+        "description": "Upload d'un fichier sur le serveur",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "COURRIER_VIDEO",
+                "COURRIER_IMAGE",
+                "COURRIER_IMAGE_ANNEXE",
+                "COURRIER_DOCUMENT",
+                "OTHER"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "COURRIER"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "filetype",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "PHOTO",
+                "VIDEO",
+                "PDF",
+                "DOC"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "courrierId",
+            "required": false,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "admin",
+                "standard",
+                "assistante_dg",
+                "directeur_general_adjoint",
+                "editor",
+                "directeur_departement"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Succes upload fichier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFileDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "File Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/multiple-file": {
+      "post": {
+        "operationId": "uploadFile",
+        "summary": "Upload des fichiers",
+        "description": "Upload des fichiers sur le serveur",
+        "parameters": [
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "COURRIER_VIDEO",
+                "COURRIER_IMAGE",
+                "COURRIER_IMAGE_ANNEXE",
+                "COURRIER_DOCUMENT",
+                "OTHER"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "filetype",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "PHOTO",
+                "VIDEO",
+                "PDF",
+                "DOC"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "entity",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "COURRIER"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "enum": [
+                "admin",
+                "standard",
+                "assistante_dg",
+                "directeur_general_adjoint",
+                "editor",
+                "directeur_departement"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Succes upload fichier",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFileDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "File Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/files/{resourcepath}/{imagename}": {
+      "get": {
+        "operationId": "getUploadFile",
+        "summary": "Recuperation des resources uploader",
+        "description": "Recuperation des ressources uploader",
+        "parameters": [
+          {
+            "name": "resourcepath",
+            "required": true,
+            "in": "path",
+            "description": "resource path",
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Succes recuperation de fichier"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "File Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/department": {
+      "post": {
+        "operationId": "createDepartment",
+        "summary": "Creation d'un département",
+        "description": "Création d'un nouveau départment",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateDepartmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Succes création département",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUserDto"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        },
+        "tags": [
+          "Department Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "get": {
+        "operationId": "DepartmentController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Department Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/department/{id}": {
+      "get": {
+        "operationId": "DepartmentController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Department Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "put": {
+        "operationId": "DepartmentController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateDepartmentDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Department Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
+      "delete": {
+        "operationId": "DepartmentController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "Department Endpoint"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
       }
     }
   },
@@ -372,7 +844,7 @@
           "password": {
             "type": "string",
             "description": "Mot de passe de connexion",
-            "default": "1998@Arachides1998",
+            "default": "1997@Arachides1997",
             "nullable": true
           }
         },
@@ -388,18 +860,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Anastase"
+            "default": "Eubert"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Brun"
+            "default": "Noel"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Thophraste_Dubois@yahoo.fr"
+            "default": "Raphal.Bernard@gmail.com"
           },
           "picture": {
             "type": "number",
@@ -409,13 +881,18 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "0512081766"
+            "default": "0555574588"
+          },
+          "department": {
+            "type": "object",
+            "description": "Propriétaire de l'atelier",
+            "default": ""
           },
           "password": {
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "QT4MvSnkmTRtoJo"
+            "default": "7287vXFxfPnEClI"
           },
           "roles": {
             "type": "string",
@@ -441,18 +918,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Anastase"
+            "default": "Eubert"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Brun"
+            "default": "Noel"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Thophraste_Dubois@yahoo.fr"
+            "default": "Raphal.Bernard@gmail.com"
           },
           "picture": {
             "type": "number",
@@ -462,13 +939,18 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "0512081766"
+            "default": "0555574588"
+          },
+          "department": {
+            "type": "object",
+            "description": "Propriétaire de l'atelier",
+            "default": ""
           },
           "password": {
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "QT4MvSnkmTRtoJo"
+            "default": "7287vXFxfPnEClI"
           },
           "roles": {
             "type": "string",
@@ -478,13 +960,290 @@
           }
         }
       },
-      "CreateCourrierDto": {
+      "User": {
         "type": "object",
         "properties": {}
       },
+      "AddCotationDto": {
+        "type": "object",
+        "properties": {
+          "validate": {
+            "type": "boolean",
+            "description": "Statut de la cotation",
+            "nullable": false,
+            "default": false
+          },
+          "user": {
+            "description": "Utilisateur",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          }
+        },
+        "required": [
+          "validate",
+          "user"
+        ]
+      },
+      "AddHistoryDto": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Statut du courrier",
+            "nullable": false,
+            "default": "pending"
+          },
+          "user": {
+            "description": "Utilisateur",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/User"
+              }
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "user"
+        ]
+      },
+      "CreateCourrierDto": {
+        "type": "object",
+        "properties": {
+          "objet": {
+            "type": "string",
+            "description": "Demande de partenariat",
+            "nullable": false
+          },
+          "picture": {
+            "type": "string",
+            "description": "Nom de l'utilisateur",
+            "nullable": true,
+            "default": null
+          },
+          "emetteur": {
+            "type": "string",
+            "description": "Port autonome de Douala",
+            "nullable": false
+          },
+          "code": {
+            "type": "string",
+            "description": "Code du courrier",
+            "nullable": false
+          },
+          "recepteur": {
+            "type": "string",
+            "description": "Fast General Trading",
+            "nullable": false
+          },
+          "direction": {
+            "type": "string",
+            "description": "Département récepteur du courrier",
+            "nullable": false,
+            "default": "fgt"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut du courrier",
+            "nullable": false,
+            "default": "pending"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type du courrier",
+            "nullable": false,
+            "default": "entrant"
+          },
+          "category": {
+            "type": "string",
+            "description": "Catégorie du courrier",
+            "nullable": false,
+            "default": "courrier"
+          },
+          "cotation": {
+            "description": "Cotation du courrier",
+            "default": [],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddCotationDto"
+              }
+            ]
+          },
+          "modifications_history": {
+            "description": "Historique du courrier",
+            "default": [],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddHistoryDto"
+              }
+            ]
+          },
+          "documents_annexe": {
+            "description": "Image de l'atelier",
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "objet",
+          "emetteur",
+          "code",
+          "recepteur",
+          "direction",
+          "status",
+          "type",
+          "category"
+        ]
+      },
       "UpdateCourrierDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "objet": {
+            "type": "string",
+            "description": "Demande de partenariat",
+            "nullable": false
+          },
+          "picture": {
+            "type": "string",
+            "description": "Nom de l'utilisateur",
+            "nullable": true,
+            "default": null
+          },
+          "emetteur": {
+            "type": "string",
+            "description": "Port autonome de Douala",
+            "nullable": false
+          },
+          "code": {
+            "type": "string",
+            "description": "Code du courrier",
+            "nullable": false
+          },
+          "recepteur": {
+            "type": "string",
+            "description": "Fast General Trading",
+            "nullable": false
+          },
+          "direction": {
+            "type": "string",
+            "description": "Département récepteur du courrier",
+            "nullable": false,
+            "default": "fgt"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statut du courrier",
+            "nullable": false,
+            "default": "pending"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type du courrier",
+            "nullable": false,
+            "default": "entrant"
+          },
+          "category": {
+            "type": "string",
+            "description": "Catégorie du courrier",
+            "nullable": false,
+            "default": "courrier"
+          },
+          "cotation": {
+            "description": "Cotation du courrier",
+            "default": [],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddCotationDto"
+              }
+            ]
+          },
+          "modifications_history": {
+            "description": "Historique du courrier",
+            "default": [],
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/AddHistoryDto"
+              }
+            ]
+          },
+          "documents_annexe": {
+            "description": "Image de l'atelier",
+            "default": [],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateFileDto": {
+        "type": "object",
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "description": "File Name"
+          },
+          "type": {
+            "type": "string",
+            "description": "File usage",
+            "nullable": true
+          },
+          "fileType": {
+            "type": "string",
+            "description": "Type of file",
+            "nullable": true
+          },
+          "url": {
+            "type": "string",
+            "description": "URL image"
+          }
+        },
+        "required": [
+          "fileName",
+          "type",
+          "fileType",
+          "url"
+        ]
+      },
+      "CreateDepartmentDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du département",
+            "nullable": false
+          },
+          "dimunitif": {
+            "type": "string",
+            "description": "dimunitif du département",
+            "nullable": false
+          }
+        },
+        "required": [
+          "name",
+          "dimunitif"
+        ]
+      },
+      "UpdateDepartmentDto": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du département",
+            "nullable": false
+          },
+          "dimunitif": {
+            "type": "string",
+            "description": "dimunitif du département",
+            "nullable": false
+          }
+        }
       }
     }
   }

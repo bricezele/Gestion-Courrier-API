@@ -6,7 +6,8 @@
  * Date: 19/03/2022
  */
 export enum Direction {
-    TECHNIQUE = 'technique',
-    ADMINISTRATIF = 'administratif',
-    FINANCIER = 'financier',
+  FGT = "fgt",
+  DF = "dante_fox",
+  NMR = "nevada_mining_resources",
+  LG = "liberation_gold",
 }

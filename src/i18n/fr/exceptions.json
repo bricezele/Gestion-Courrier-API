@@ -21,5 +21,7 @@
   "ALREADY_SUBSCRIBE_TO_TRAINING": "Vous êtes déjà inscrit à cette compétence",
   "PARTICIPANT_QUOTA_EXEED": "Le nombre maximum d'adhérent à cet atelier est atteint",
   "TRAINING_ALREADY_EXIST": "Une formation avec ce nom existe déjà, veuillez choisir un autre",
-  "TRAINING_NOT_FOUND": "Formation inexistante"
+  "TRAINING_NOT_FOUND": "Formation inexistante",
+  "DEPARTMENT_ALREADY_EXISTS": "Le département {dimunitif} déjà",
+  "DEPARTEMENT_NOT_FOUND": "Ce département n'existe pas"
 }

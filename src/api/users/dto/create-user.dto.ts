@@ -1,22 +1,17 @@
-import {
-    IsEmail,
-    IsEnum,
-    IsNotEmpty, IsNumber,
-    IsOptional,
-    IsString,
-    MaxLength
-} from "class-validator";
-import {ApiProperty} from '@nestjs/swagger';
-import {Role} from '../../../enum/role.enum';
-import {Exclude} from 'class-transformer';
-import {FakeData} from '../../../utils/FakeData';
+import { IsEmail, IsEnum, IsMongoId, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength } from "class-validator";
+import { ApiProperty } from "@nestjs/swagger";
+import { Role } from "../../../enum/role.enum";
+import { Exclude } from "class-transformer";
+import { FakeData } from "../../../utils/FakeData";
+import { CreateDepartmentDto } from "../../department/dto/create-department.dto";
+import { ObjectId } from "mongodb";
 
 export class CreateUserDto {
     @ApiProperty({
         description: "Nom de l'utilisateur",
         nullable: false,
         required: true,
-        default: FakeData.user.firstname,
+        default: FakeData.user.firstname
     })
     @IsString()
     @IsNotEmpty()
@@ -40,7 +35,6 @@ export class CreateUserDto {
     @IsNotEmpty()
     readonly email: string;
 
-
     @ApiProperty({
         description: "Avatar de l'utilisateur",
     })
@@ -52,7 +46,7 @@ export class CreateUserDto {
         description: 'Numéro de téléphone',
         nullable: false,
         required: true,
-        default: FakeData.user.phone_number,
+        default: FakeData.user.phone_number
     })
     @IsString()
     @IsNotEmpty()
@@ -63,10 +57,19 @@ export class CreateUserDto {
     salt: string;
 
     @ApiProperty({
-        description: 'Mot de passe de connexion',
+        description: "Propriétaire de l'atelier",
+        required: false,
+        default: ""
+    })
+    @IsMongoId()
+    @IsOptional()
+    readonly department: CreateDepartmentDto | ObjectId;
+
+    @ApiProperty({
+        description: "Mot de passe de connexion",
         nullable: false,
         required: true,
-        default: FakeData.user.password,
+        default: FakeData.user.password
     })
     @IsString()
     @MaxLength(255)

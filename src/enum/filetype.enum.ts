@@ -6,8 +6,8 @@
  * Date: 11/09/2021
  */
 export enum FileType {
-    PHOTO = 'PHOTO',
-    VIDEO = 'VIDEO',
-    PDF = 'PDF',
+    PHOTO = "PHOTO",
+    VIDEO = "VIDEO",
+    PDF = "PDF",
+    DOC = "DOC",
 }
-

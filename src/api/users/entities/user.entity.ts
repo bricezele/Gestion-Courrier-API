@@ -1,16 +1,17 @@
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
-import {Transform} from 'class-transformer';
-import {Document, ObjectId} from 'mongoose';
-import {Role} from '../../../enum/role.enum';
-import * as bcrypt from 'bcrypt';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Transform, Type } from "class-transformer";
+import { Document, ObjectId, Types } from "mongoose";
+import { Role } from "../../../enum/role.enum";
+import * as bcrypt from "bcrypt";
+import { Department } from "../../department/entities/department.entity";
 
 export type UserDocument = User & Document;
 
 @Schema({
     toJSON: {
         getters: true,
-        virtuals: true,
-    },
+        virtuals: true
+    }
 })
 export class User {
     @Transform(({value}) => value.toString())
@@ -54,15 +55,26 @@ export class User {
 
     @Prop({
         type: String,
-        enum: [Role.ADMIN, Role.STANDARD, Role.ASSISTANTE_DG, Role.EDITOR],
-        default: Role.EDITOR,
+        enum: [
+            Role.ADMIN,
+            Role.STANDARD,
+            Role.DGA,
+            Role.ASSISTANTE_DG,
+            Role.EDITOR,
+            Role.DG
+        ],
+        default: Role.EDITOR
     })
     roles: string;
 
-    @Prop({required: true, type: Date, default: Date.now})
+    @Prop({ type: Types.ObjectId, ref: "Department", required: false })
+    @Type(() => Department)
+    department: Department;
+
+    @Prop({ required: true, type: Date, default: Date.now })
     createdAt: Date;
 
-    @Prop({required: true, type: Date, default: Date.now})
+    @Prop({ required: true, type: Date, default: Date.now })
     updatedAt: Date;
 
     @Prop()
