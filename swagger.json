@@ -860,18 +860,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Libère"
+            "default": "Alcine"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Huet"
+            "default": "Mercier"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Rjeanne30@hotmail.fr"
+            "default": "Arsnie_Vincent@yahoo.fr"
           },
           "picture": {
             "type": "number",
@@ -881,7 +881,7 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "+33 699844499"
+            "default": "0414396412"
           },
           "department": {
             "type": "object",
@@ -892,7 +892,7 @@
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "BIUFMRZ4bhAgmIt"
+            "default": "NbFOEvTaJ9uS_9J"
           },
           "roles": {
             "type": "string",
@@ -918,18 +918,18 @@
             "type": "string",
             "description": "Nom de l'utilisateur",
             "nullable": false,
-            "default": "Libère"
+            "default": "Alcine"
           },
           "lastname": {
             "type": "string",
             "description": "Prénom de l'utilisateur",
-            "default": "Huet"
+            "default": "Mercier"
           },
           "email": {
             "type": "string",
             "description": "Email de l'utilisateur",
             "nullable": false,
-            "default": "Rjeanne30@hotmail.fr"
+            "default": "Arsnie_Vincent@yahoo.fr"
           },
           "picture": {
             "type": "number",
@@ -939,7 +939,7 @@
             "type": "string",
             "description": "Numéro de téléphone",
             "nullable": false,
-            "default": "+33 699844499"
+            "default": "0414396412"
           },
           "department": {
             "type": "object",
@@ -950,7 +950,7 @@
             "type": "string",
             "description": "Mot de passe de connexion",
             "nullable": false,
-            "default": "BIUFMRZ4bhAgmIt"
+            "default": "NbFOEvTaJ9uS_9J"
           },
           "roles": {
             "type": "string",

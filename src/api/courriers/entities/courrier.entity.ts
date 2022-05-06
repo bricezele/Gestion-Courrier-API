@@ -22,6 +22,7 @@ export class HistoryModification {
             CourrierStatus.VALIDE_APPROUVE,
             CourrierStatus.COTATION_APPROUVE,
             CourrierStatus.COTATION_REFUSE,
+            CourrierStatus.ARCHIVE,
         ],
         default: CourrierStatus.PENDING,
         required: true,

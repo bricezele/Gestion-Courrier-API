@@ -13,4 +13,5 @@ export enum CourrierStatus {
     VALIDE_APPROUVE = 'valide_approuve',
     COTATION_APPROUVE = 'cotation_approuve',
     COTATION_REFUSE = 'cotation_refuse',
+    ARCHIVE = 'archive',
 }
