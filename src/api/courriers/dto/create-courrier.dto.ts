@@ -1,7 +1,6 @@
 import { IsArray, IsEnum, IsNotEmpty, IsObject, IsOptional, IsString } from "class-validator";
 import { ApiProperty } from "@nestjs/swagger";
 import { Exclude } from "class-transformer";
-import { Direction } from "../../../enum/direction.enum";
 import { CourrierStatus } from "../../../enum/courrierstatus.enum";
 import { CourrierCategory } from "../../../enum/courriercategory.enum";
 import { ObjectId } from "mongodb";
@@ -57,11 +56,10 @@ export class CreateCourrierDto {
         description: 'Département récepteur du courrier',
         nullable: false,
         required: true,
-        default: Direction.FGT,
+        default: null,
     })
-    @IsEnum(Direction)
     @IsNotEmpty()
-    readonly direction?: Direction;
+    readonly direction: string;
 
     @ApiProperty({
         description: 'Statut du courrier',

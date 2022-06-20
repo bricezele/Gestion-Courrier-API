@@ -23,10 +23,16 @@ export class CourriersService {
             await createdCourrier
                 .populate({
                     path: 'cotation',
-                    populate: {
-                        path: 'user',
-                        model: 'User',
-                    },
+                    populate: [
+                        {
+                            path: 'user',
+                            model: 'User',
+                        },
+                        {
+                            path: 'cotation_employe.user',
+                            model: 'User',
+                        },
+                    ],
                 })
                 .populate('documents_annexe')
                 .populate({
@@ -78,10 +84,16 @@ courrier = await this.courrierModel
                 })
                 .populate({
                     path: 'cotation',
-                    populate: {
-                        path: 'user',
-                        model: 'User',
-                    },
+                    populate: [
+                        {
+                            path: 'user',
+                            model: 'User',
+                        },
+                        {
+                            path: 'cotation_employe.user',
+                            model: 'User',
+                        },
+                    ],
                 })
                 .populate('documents_annexe')
                 .sort({createdAt: 'desc'})
@@ -101,10 +113,16 @@ courrier = await this.courrierModel
                     .findOne({_id: mongoose.Types.ObjectId(id)})
                     .populate({
                         path: 'cotation',
-                        populate: {
-                            path: 'user',
-                            model: 'User',
-                        },
+                        populate: [
+                            {
+                                path: 'user',
+                                model: 'User',
+                            },
+                            {
+                                path: 'cotation_employe.user',
+                                model: 'User',
+                            },
+                        ],
                     })
                     .populate('documents_annexe')
                     .populate({
@@ -136,6 +154,8 @@ courrier = await this.courrierModel
                 .findOne({_id: id})
                 .exec();
 
+            console.log("updateCourrierDTO", JSON.stringify(updateCourrierDto));
+
             if (courrierTemp.status !== updateCourrierDto.status) {
                 ObjectId.isValid(id) &&
                     (await this.courrierModel
@@ -153,10 +173,16 @@ courrier = await this.courrierModel
                         )
                         .populate({
                             path: 'cotation',
-                            populate: {
-                                path: 'user',
-                                model: 'User',
-                            },
+                            populate: [
+                                {
+                                    path: 'user',
+                                    model: 'User',
+                                },
+                                {
+                                    path: 'cotation_employe.user',
+                                    model: 'User',
+                                },
+                            ],
                         })
                         .populate('documents_annexe')
                         .populate({
@@ -178,10 +204,16 @@ courrier = await this.courrierModel
                     )
                     .populate({
                         path: 'cotation',
-                        populate: {
-                            path: 'user',
-                            model: 'User',
-                        },
+                        populate: [
+                            {
+                                path: 'user',
+                                model: 'User',
+                            },
+                            {
+                                path: 'cotation_employe.user',
+                                model: 'User',
+                            },
+                        ],
                     })
                     .populate('documents_annexe')
                     .populate({

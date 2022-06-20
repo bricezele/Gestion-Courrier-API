@@ -23,6 +23,7 @@ import { HttpExceptionFilter } from "./filters/http.exception.filter";
 import { CourriersModule } from "./api/courriers/courriers.module";
 import { FileModule } from "./api/file/file.module";
 import { DepartmentModule } from "./api/department/department.module";
+import { SocietyModule } from "./api/society/society.module";
 
 @Module({
   imports: [
@@ -83,7 +84,8 @@ import { DepartmentModule } from "./api/department/department.module";
     OauthModule,
     CourriersModule,
     FileModule,
-    DepartmentModule
+    DepartmentModule,
+    SocietyModule
   ],
     providers: [
         AppService,

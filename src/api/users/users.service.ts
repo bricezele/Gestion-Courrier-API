@@ -19,12 +19,11 @@ import { Role } from "../../enum/role.enum";
 @Injectable()
 export class UsersService {
     constructor(
-      @InjectModel(User.name)
-      private readonly userModel: Model<UserDocument>,
-      @InjectConnection() private readonly connection: mongoose.Connection,
-      private readonly i18n: I18nService
-    ) {
-    }
+        @InjectModel(User.name)
+        private readonly userModel: Model<UserDocument>,
+        @InjectConnection() private readonly connection: mongoose.Connection,
+        private readonly i18n: I18nService,
+    ) {}
 
     async create(req: Request, createUserDto: CreateUserDto): Promise<User> {
         let user = null;
@@ -50,7 +49,7 @@ export class UsersService {
             } else {
                 const createdUser = new this.userModel(createUserDto);
                 if (createUserDto.department !== null) {
-                    await createdUser.populate("department");
+                    await createdUser.populate('department');
                 }
                 return createdUser.save();
             }
@@ -65,8 +64,8 @@ export class UsersService {
     async findAll(): Promise<User[]> {
         try {
             return await this.userModel
-              .find({ roles: { $ne: Role.ADMIN } })
-              .populate("department")
+                .find({roles: {$ne: Role.ADMIN}})
+                .populate('department')
                 .sort({_id: 1})
                 .exec();
         } catch (error) {
@@ -81,8 +80,8 @@ export class UsersService {
             user =
                 ObjectId.isValid(id) &&
                 (await this.userModel
-                  .findOne({ _id: new mongoose.Types.ObjectId(id) })
-                  .populate("department")
+                    .findOne({_id: new mongoose.Types.ObjectId(id)})
+                    .populate('department')
                     .exec());
         } catch (error) {
             console.log('Error', error);
@@ -101,9 +100,9 @@ export class UsersService {
         let user = null;
         try {
             user = await this.userModel
-              .findOne({ email })
-              .populate("department")
-              .exec();
+                .findOne({email})
+                .populate('department')
+                .exec();
         } catch (error) {
             console.log('Error', error);
             throw new InternalServerErrorException();
@@ -147,24 +146,24 @@ export class UsersService {
     async update(id: string, updateUserDto) {
         let user = null;
         try {
-            if (updateUserDto.password !== "") {
+            if (updateUserDto.password !== '') {
                 updateUserDto.password = await this.hashPassword(
-                  updateUserDto.password,
-                  updateUserDto.salt
+                    updateUserDto.password,
+                    updateUserDto.salt,
                 );
             }
 
             user =
-              ObjectId.isValid(id) &&
-              (await this.userModel
-                .findByIdAndUpdate({ _id: id }, { $set: updateUserDto })
-                .setOptions({ overwrite: true, new: true })
-                .populate("department")
+                ObjectId.isValid(id) &&
+                (await this.userModel
+                    .findByIdAndUpdate({_id: id}, {$set: updateUserDto})
+                    .setOptions({overwrite: true, new: true})
+                    .populate('department')
 
-                .exec());
+                    .exec());
             if (!user) {
                 const message = await this.i18n.translate(
-                  "exceptions.USER_NOT_FOUND"
+                    'exceptions.USER_NOT_FOUND',
                 );
                 throw new NotFoundException(message);
             } else return user;

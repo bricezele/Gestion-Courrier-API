@@ -23,5 +23,7 @@
   "TRAINING_ALREADY_EXIST": "Une formation avec ce nom existe déjà, veuillez choisir un autre",
   "TRAINING_NOT_FOUND": "Formation inexistante",
   "DEPARTMENT_ALREADY_EXISTS": "Le département {dimunitif} déjà",
-  "DEPARTEMENT_NOT_FOUND": "Ce département n'existe pas"
+  "DEPARTEMENT_NOT_FOUND": "Ce département n'existe pas",
+  "SOCIETY_ALREADY_EXISTS": "La société {dimunitif} déjà",
+  "SOCIETY_NOT_FOUND": "Cette société n'existe pas"
 }
